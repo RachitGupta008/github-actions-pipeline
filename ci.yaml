@@ -34,7 +34,7 @@ jobs:
         uses: dorny/paths-filter@v2.2.1
         id: filter
         with:
-          base: 'master'        
+          base: 'main'        
           filters: |
             pipeline:
               - 'deployment/**'
@@ -42,5 +42,5 @@ jobs:
         if: ${{ steps.filter.outputs.pipeline == 'true' }}
         run: |
           gcloud ai endpoints create \
-          --region=LOCATION_ID \
-          --display-name=ENDPOINT_NAME
+          --region=europe-west1 \
+          --display-name=test-ad
