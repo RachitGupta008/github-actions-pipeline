@@ -43,4 +43,9 @@ jobs:
         run: |
           gcloud ai endpoints create \
           --region=europe-west1 \
-          --display-name=test-ad
+          --display-name=test-ad;
+          gcloud ai models upload \
+          --region=europe-west1 \
+          --display-name=model-by-github \
+          --container-image-uri=europe-docker.pkg.dev/vertex-ai/prediction/sklearn-cpu.1-2:latest \
+          --artifact-uri=gs://ad-2345/model
