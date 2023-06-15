@@ -41,11 +41,10 @@ jobs:
       - name: trigger creating endpoint based on pipeline changes
         if: ${{ steps.filter.outputs.pipeline == 'true' }}
         run: |
-          gcloud ai endpoints create \
+          gcloud ai endpoints deploy-model 1874702509730168832\
           --region=europe-west1 \
-          --display-name=test-ad;
-          gcloud ai models upload \
-          --region=europe-west1 \
+          --model=6011364320586235904 \
           --display-name=model-by-github \
-          --container-image-uri=europe-docker.pkg.dev/vertex-ai/prediction/sklearn-cpu.1-2:latest \
-          --artifact-uri=gs://ad-2345/model
+          --min-replica-count=1 \
+          --max-replica-count=1 \
+          --traffic-split=0=100
