@@ -41,7 +41,7 @@ jobs:
       - name: trigger creating endpoint based on pipeline changes
         if: ${{ steps.filter.outputs.pipeline == 'true' }}
         run: |
-          gcloud ai endpoints deploy-model 1874702509730168832\
+          gcloud ai endpoints deploy-model 1874702509730168832 \
           --region=europe-west1 \
           --model=6011364320586235904 \
           --display-name=model-by-github \
