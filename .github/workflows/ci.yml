@@ -41,10 +41,5 @@ jobs:
       - name: trigger creating endpoint based on pipeline changes
         if: ${{ steps.filter.outputs.pipeline == 'true' }}
         run: |
-          gcloud ai endpoints deploy-model 1874702509730168832 \
-          --region=europe-west1 \
-          --model=6011364320586235904 \
-          --display-name=model-by-github \
-          --min-replica-count=1 \
-          --max-replica-count=1 \
-          --traffic-split=0=100
+          sudo apt-get update;
+          sudo apt-get install python3.9
