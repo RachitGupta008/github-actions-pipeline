@@ -1,10 +1,9 @@
 import json
 import requests
-from flask import request
 
 r={
   "model": {
-    "displayName": "uploaded-model-1",
+    "displayName": "uploaded-model-2",
     "predictSchemata": {},
     "containerSpec": {
       "imageUri": "europe-docker.pkg.dev/vertex-ai/prediction/sklearn-cpu.1-2:latest"
@@ -22,4 +21,4 @@ with open('request-gmn-model.json', 'w') as fp:
     json.dump(r, fp)
     
 
-res = requests.get("https://europe-west1-aiplatform.googleapis.com/v1/projects/sandbox-dev-dbg/locations/europe-west1/models:upload", json=request-gmn-model.json)
+res = requests.get("https://europe-west1-aiplatform.googleapis.com/v1/projects/sandbox-dev-dbg/locations/europe-west1/models:upload", json='request-gmn-model.json')
