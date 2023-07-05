@@ -256,7 +256,7 @@ compiler.Compiler().compile(pipeline_func=pipeline,
 start_pipeline = pipeline_jobs.PipelineJob(
     display_name="winequality-pipeline",
     template_path="ml_winequality.json",
-    enable_caching=True,
+    enable_caching=False,
     location=REGION,
 )
 
