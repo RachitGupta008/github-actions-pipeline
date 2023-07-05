@@ -45,4 +45,7 @@ jobs:
           sudo apt-get install python3.9;
           sudo apt install python3-pip;
           pip install pip install google-cloud-aiplatform;
-          python3 code.py;
+          pip3 install --user  google-cloud-aiplatform==1.3.0 --upgrade;
+          pip3 install --user kfp --upgrade;
+          pip install google_cloud_pipeline_components;
+          python3 pipeline.py;
