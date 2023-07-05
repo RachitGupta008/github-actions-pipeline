@@ -15,7 +15,7 @@ from kfp.v2 import compiler
 from google.cloud import bigquery
 from google.cloud import aiplatform
 from google.cloud.aiplatform import pipeline_jobs
-from google_cloud_pipeline_components import aiplatform as gcc_aip
+# from google_cloud_pipeline_components import aiplatform as gcc_aip
 
 # PATH=%env PATH
 # %env PATH={PATH}:/home/jupyter/.local/bin
