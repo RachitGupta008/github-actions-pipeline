@@ -48,6 +48,6 @@ job = aiplatform.PipelineJob(
  parameter_values=parameter_values
 )
 
-job.submit(
+job.run(
  service_account='test-ad@burner-akrdixit.iam.gserviceaccount.com'
 )
