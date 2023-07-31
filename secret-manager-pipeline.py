@@ -49,5 +49,5 @@ job = aiplatform.PipelineJob(
 )
 
 job.run(
- service_account='test-ad@burner-akrdixit.iam.gserviceaccount.com'
+ service_account='run-sa@burner-akrdixit.iam.gserviceaccount.com'
 )
