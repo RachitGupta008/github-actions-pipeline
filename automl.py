@@ -29,17 +29,17 @@ aiplatform.init(
 #     experiment_description='my experiment description'
 )
 
-dataset = aiplatform.TabularDataset('7497420256223166464')
+dataset = aiplatform.TabularDataset('2084093504123830272')
 
 job = aiplatform.AutoMLTabularTrainingJob(
-  display_name="train-automl",
+  display_name="gmn-train-automl-gender-after-2nd-si-from-github",
   optimization_prediction_type="classification",
   optimization_objective="maximize-au-roc",
 )
 
 model = job.run(
     dataset=dataset,
-    target_column="target_default",
+    target_column="Gender",
     training_fraction_split=0.6,
     validation_fraction_split=0.2,
     test_fraction_split=0.2,
