@@ -43,7 +43,7 @@ SERVING_FEATURE_IDS = {
     # to choose all the features use 'entity_type_id: ['*']'
     "users": ["age", "gender", "liked_genres"],
 }
-DESTINATION_TABLE_URI="bq://sandbox-dev-dbg.fs.movie_prediction"
+DESTINATION_TABLE_URI="bq://sandbox-dev-dbg.fs.movie_prediction_1"
 fs.batch_serve_to_bq(
     bq_destination_output_uri=DESTINATION_TABLE_URI,
     serving_feature_ids=SERVING_FEATURE_IDS,
