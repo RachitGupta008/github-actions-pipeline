@@ -47,4 +47,4 @@ jobs:
           pip install google-cloud-aiplatform;
           pip3 install --user  google-cloud-aiplatform==1.3.0 --upgrade;
           # pip install --user kfp==1.8.22;
-          python3 automl.py;
+          python3 fs.py;
