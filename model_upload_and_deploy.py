@@ -87,7 +87,7 @@ job = aiplatform.PipelineJob(
     template_path="evaluation_demo_pipeline.json",
     pipeline_root=PIPELINE_ROOT,
     parameter_values={"metric": "auPrc", "threshold": 0.95},
-    enable_caching=True,
+    enable_caching=False,
 )
 
 job.run(service_account="vertex-sa@sandbox-dev-dbg.iam.gserviceaccount.com")
