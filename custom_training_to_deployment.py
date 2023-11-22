@@ -34,56 +34,56 @@ def pipeline(
     from google_cloud_pipeline_components.v1.model import ModelUploadOp
     from kfp.v2.components import importer_node
 
-    # custom_job_task = CustomTrainingJobOp(
-    #     project=project,
-    #     display_name="model-training",
-    #     worker_pool_specs=[
-    #         {
-    #             "containerSpec": {
-    #                 "args": TRAINER_ARGS,
-    #                 "env": [{"name": "AIP_MODEL_DIR", "value": WORKING_DIR}],
-    #                 "imageUri": "gcr.io/google-samples/bw-cc-train:latest",
-    #             },
-    #             "replicaCount": "1",
-    #             "machineSpec": {
-    #                 "machineType": "n1-standard-16",
-    #                 "accelerator_type": aip.gapic.AcceleratorType.NVIDIA_TESLA_K80,
-    #                 "accelerator_count": 2,
-    #             },
-    #         }
-    #     ],
-    # )
+    custom_job_task = CustomTrainingJobOp(
+        project=project,
+        display_name="model-training",
+        worker_pool_specs=[
+            {
+                "containerSpec": {
+                    "args": TRAINER_ARGS,
+                    "env": [{"name": "AIP_MODEL_DIR", "value": WORKING_DIR}],
+                    "imageUri": "gcr.io/google-samples/bw-cc-train:latest",
+                },
+                "replicaCount": "1",
+                "machineSpec": {
+                    "machineType": "n1-standard-16",
+                    "accelerator_type": aip.gapic.AcceleratorType.NVIDIA_TESLA_K80,
+                    "accelerator_count": 2,
+                },
+            }
+        ],
+    )
 
-    # import_unmanaged_model_task = importer_node.importer(
-    #     artifact_uri=WORKING_DIR,
-    #     artifact_class=artifact_types.UnmanagedContainerModel,
-    #     metadata={
-    #         "containerSpec": {
-    #             "imageUri": "us-docker.pkg.dev/vertex-ai/prediction/tf2-cpu.2-9:latest",
-    #         },
-    #     },
-    # ).after(custom_job_task)
+    import_unmanaged_model_task = importer_node.importer(
+        artifact_uri=WORKING_DIR,
+        artifact_class=artifact_types.UnmanagedContainerModel,
+        metadata={
+            "containerSpec": {
+                "imageUri": "us-docker.pkg.dev/vertex-ai/prediction/tf2-cpu.2-9:latest",
+            },
+        },
+    ).after(custom_job_task)
 
-    # model_upload_op = ModelUploadOp(
-    #     project=project,
-    #     display_name=model_display_name,
-    #     unmanaged_container_model=import_unmanaged_model_task.outputs["artifact"],
-    # )
-    # model_upload_op.after(import_unmanaged_model_task)
+    model_upload_op = ModelUploadOp(
+        project=project,
+        display_name=model_display_name,
+        unmanaged_container_model=import_unmanaged_model_task.outputs["artifact"],
+    )
+    model_upload_op.after(import_unmanaged_model_task)
 
     endpoint_create_op = EndpointCreateOp(
         project=project,
         display_name="pipelines-created-endpoint",
     )
 
-    # ModelDeployOp(
-    #     endpoint=endpoint_create_op.outputs["endpoint"],
-    #     model=model_upload_op.outputs["model"],
-    #     deployed_model_display_name=model_display_name,
-    #     dedicated_resources_machine_type="n1-standard-16",
-    #     dedicated_resources_min_replica_count=1,
-    #     dedicated_resources_max_replica_count=1,
-    # )
+    ModelDeployOp(
+        endpoint=endpoint_create_op.outputs["endpoint"],
+        model=model_upload_op.outputs["model"],
+        deployed_model_display_name=model_display_name,
+        dedicated_resources_machine_type="n1-standard-16",
+        dedicated_resources_min_replica_count=1,
+        dedicated_resources_max_replica_count=1,
+    )
 
 compiler.Compiler().compile(
     pipeline_func=pipeline,
@@ -96,6 +96,6 @@ job = aip.PipelineJob(
     display_name=DISPLAY_NAME,
     template_path="tabular_regression_pipeline.json",
     pipeline_root=PIPELINE_ROOT,
-    enable_caching=False,
+    enable_caching=True,
 )
 job.run(service_account="vertex-sa@sandbox-dev-dbg.iam.gserviceaccount.com")
