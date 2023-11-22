@@ -6,6 +6,9 @@ from kfp.v2 import dsl
 from kfp.v2.dsl import (
                         Output, component)
 
+BUCKET_URI = "gs://ad-2345" 
+PIPELINE_ROOT = f"{BUCKET_URI}/pipeline_root/batch"
+
 @kfp.dsl.pipeline(name="test")
 def pipeline(
     project: str,
@@ -53,6 +56,7 @@ job = aiplatform.PipelineJob(
     location="europe-west1",
     display_name="test",
     template_path="batch_prediction.json",
+    pipeline_root=PIPELINE_ROOT,
     parameter_values={
     "project":"sandbox-dev-dbg",
     "location":"europe-west1",
