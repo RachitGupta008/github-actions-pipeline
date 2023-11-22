@@ -53,4 +53,4 @@ jobs:
                                  google-cloud-storage \
                                  'kfp<2' \
                                  'google-cloud-pipeline-components<2';
-          python3 model_upload_and_deploy.py;
+          python3 batch_prediction.py;
