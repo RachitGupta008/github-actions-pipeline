@@ -96,6 +96,6 @@ job = aip.PipelineJob(
     display_name=DISPLAY_NAME,
     template_path="tabular_regression_pipeline.json",
     pipeline_root=PIPELINE_ROOT,
-    enable_caching=True,
+    enable_caching=False,
 )
 job.run(service_account="vertex-sa@sandbox-dev-dbg.iam.gserviceaccount.com")
