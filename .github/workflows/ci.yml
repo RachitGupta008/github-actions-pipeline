@@ -53,4 +53,4 @@ jobs:
                                  google-cloud-storage \
                                  'kfp<2' \
                                  'google-cloud-pipeline-components<2';
-          python3 batch_prediction.py;
+          python3 custom_training_to_deployment.py;
