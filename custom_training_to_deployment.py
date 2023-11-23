@@ -64,26 +64,26 @@ def pipeline(
         },
     ).after(custom_job_task)
 
-    model_upload_op = ModelUploadOp(
-        project=project,
-        display_name=model_display_name,
-        unmanaged_container_model=import_unmanaged_model_task.outputs["artifact"],
-    )
-    model_upload_op.after(import_unmanaged_model_task)
+    # model_upload_op = ModelUploadOp(
+    #     project=project,
+    #     display_name=model_display_name,
+    #     unmanaged_container_model=import_unmanaged_model_task.outputs["artifact"],
+    # )
+    # model_upload_op.after(import_unmanaged_model_task)
 
-    endpoint_create_op = EndpointCreateOp(
-        project=project,
-        display_name="pipelines-created-endpoint",
-    )
+    # endpoint_create_op = EndpointCreateOp(
+    #     project=project,
+    #     display_name="pipelines-created-endpoint",
+    # )
 
-    ModelDeployOp(
-        endpoint=endpoint_create_op.outputs["endpoint"],
-        model=model_upload_op.outputs["model"],
-        deployed_model_display_name=model_display_name,
-        dedicated_resources_machine_type="n1-standard-16",
-        dedicated_resources_min_replica_count=1,
-        dedicated_resources_max_replica_count=1,
-    )
+    # ModelDeployOp(
+    #     endpoint=endpoint_create_op.outputs["endpoint"],
+    #     model=model_upload_op.outputs["model"],
+    #     deployed_model_display_name=model_display_name,
+    #     dedicated_resources_machine_type="n1-standard-16",
+    #     dedicated_resources_min_replica_count=1,
+    #     dedicated_resources_max_replica_count=1,
+    # )
 
 compiler.Compiler().compile(
     pipeline_func=pipeline,
