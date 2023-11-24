@@ -3,6 +3,7 @@ from typing import NamedTuple
 import kfp
 from google.cloud import aiplatform
 from kfp import dsl
+from kfp.v2 import compiler
 from kfp.v2.dsl import (Artifact, ClassificationMetrics, Input, Metrics,
                         Output, component)
 
