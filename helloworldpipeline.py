@@ -42,7 +42,7 @@ def consumer(text1: str, text2: str, text3: str) -> str:
     description="A simple intro pipeline",
     pipeline_root=PIPELINE_ROOT,
 )
-def pipeline(text: str = "hi there"):
+def hello_pipeline(text: str = "hi there"):
     hw_task = hello_world(text=text)
     two_outputs_task = two_outputs(text=text)
     consumer_task = consumer(  # noqa: F841
@@ -57,7 +57,7 @@ DISPLAY_NAME = "intro_pipeline_job_unique"
 
 job = aip.PipelineJob(
     display_name=DISPLAY_NAME,
-    template_path="pipeline.yaml",
+    template_path="intro_pipeline.yaml",
     pipeline_root=PIPELINE_ROOT,
 )
 
