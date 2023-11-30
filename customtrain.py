@@ -8,7 +8,7 @@ PROJECT_ID = "sandbox-dev-dbg"
 REGION = "europe-west1"
 BUCKET_URI = "gs://test-ad789" 
 PIPELINE_ROOT = f"{BUCKET_URI}/pipeline_root/bikes_weather"
-
+print(kfp.__version__)
 MODEL_DISPLAY_NAME = "train"
 @kfp.dsl.pipeline(name="train" )
 def pipeline(
