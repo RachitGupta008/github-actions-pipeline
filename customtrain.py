@@ -2,7 +2,7 @@ from typing import Any, Dict, List
 
 import google.cloud.aiplatform as aip
 import kfp
-from kfp.v2 import compiler
+from kfp import compiler
 
 PROJECT_ID = "sandbox-dev-dbg"
 REGION = "europe-west1"
