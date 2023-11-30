@@ -43,14 +43,14 @@ def pipeline(
 
 compiler.Compiler().compile(
     pipeline_func=pipeline,
-    package_path="custom_train_pipeline.json",
+    package_path="custom_train_pipeline.yaml",
 )
 
 DISPLAY_NAME = "custom_train"
 
 job = aip.PipelineJob(
     display_name=DISPLAY_NAME,
-    template_path="custom_train_pipeline.json",
+    template_path="custom_train_pipeline.yaml",
     pipeline_root=PIPELINE_ROOT,
     enable_caching=False,
 )
