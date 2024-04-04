@@ -3,6 +3,7 @@ from typing import NamedTuple
 import google.cloud.aiplatform as aip
 from kfp import compiler, dsl
 from kfp.dsl import component
+
 BUCKET_URI = "gs://ad-2345" 
 PIPELINE_ROOT = f"{BUCKET_URI}/pipeline_root/hw"
 
